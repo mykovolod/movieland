@@ -8,7 +8,15 @@
     <context:component-scan base-package="com.mykovolod.movieland"/>
     <mvc:annotation-driven/>
 
-    <context:property-placeholder location="classpath:jdbc-h2.properties"/>
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc-h2.properties</value>
+                <value>classpath:application-test.properties</value>
+            </list>
+        </property>
+    </bean>
+
 
     <jdbc:initialize-database>
         <jdbc:script location="classpath:db/shema.sql"/>
@@ -21,7 +29,7 @@
         <property name="user" value="${jdbc.user}"/>
         <property name="password" value="${jdbc.password}"/>
     </bean>
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
         <constructor-arg ref="dataSource"/>
     </bean>
 

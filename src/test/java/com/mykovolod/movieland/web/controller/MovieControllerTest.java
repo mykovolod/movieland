@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -14,12 +15,16 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
 @ContextConfiguration("classpath:test-servlet-context.xml")
 public class MovieControllerTest {
+
+    @Value("${random.movies.limit}")
+    private int limit;
 
     @Autowired
     private WebApplicationContext wac;
@@ -28,7 +33,9 @@ public class MovieControllerTest {
 
     @Before
     public void setup() {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac)
+                .alwaysDo(print())
+                .build();
     }
 
 
@@ -38,7 +45,7 @@ public class MovieControllerTest {
         mockMvc.perform(get("/movie"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$", hasSize(3)))
                 .andExpect(jsonPath("$[0].id").value(1))
                 .andExpect(jsonPath("$[0].nameRussian").value("Побег из Шоушенка"))
                 .andExpect(jsonPath("$[0].nameNative").value("The Shawshank Redemption"))
@@ -56,6 +63,15 @@ public class MovieControllerTest {
                 .andExpect(jsonPath("$[1].price").value(134.67))
                 .andExpect(jsonPath("$[1].picturePath").value("https://images-na.ssl-images-amazon.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BanBnXkFtZTYwOTU2NTY3._V1._SY209_CR0,0,140,209_.jpg"));
 
+    }
+
+    @Test
+    public void givenMovies_whenGetRandom_thenReturnByLimit() throws Exception {
+
+        mockMvc.perform(get("/movie/random"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$", hasSize(limit)));
     }
 
 }

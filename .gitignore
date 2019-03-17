@@ -1,0 +1,9 @@
+.mvn
+/target/
+
+### IntelliJ IDEA ###
+.idea
+*.iml
+
+### properties that contains sensitive information ###
+*-secret.properties

@@ -7,11 +7,13 @@
 	   		http://www.springframework.org/schema/context
 	   		http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-    <bean id="dbSecretProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:application-database-secret.properties"/>
-    </bean>
-    <bean id="dbProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:application.properties"/>
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:application-database-secret.properties</value>
+                <value>classpath:application.properties</value>
+            </list>
+        </property>
     </bean>
 
 

@@ -32,4 +32,11 @@ public class DefaultMovieService implements MovieService {
         LOGGER.debug("Return movies: " + movieDaoAll);
         return movieDaoAll;
     }
+
+    @Override
+    public List<Movie> getMovieByGenre(int genre) {
+        List<Movie> movieDaoAll = movieDao.getMovieByGenre(genre);
+        LOGGER.debug("Return movies: " + movieDaoAll);
+        return movieDaoAll;
+    }
 }

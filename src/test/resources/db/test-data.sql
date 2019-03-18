@@ -1,5 +1,7 @@
+-- ================== MOVIES ==========================
 INSERT INTO movieland.movies
-(name,
+(movie_id,
+ name,
  name_original,
  year,
  country,
@@ -7,7 +9,8 @@ INSERT INTO movieland.movies
  rating,
  price,
  picture_path)
-VALUES ('Побег из Шоушенка',
+VALUES (1,
+        'Побег из Шоушенка',
         'The Shawshank Redemption',
         '1994',
         'США',
@@ -15,9 +18,9 @@ VALUES ('Побег из Шоушенка',
         8.90,
         123.45,
         'https://images-na.ssl-images-amazon.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1._SY209_CR0,0,140,209_.jpg');
-
 INSERT INTO movieland.movies
-(name,
+(movie_id,
+ name,
  name_original,
  year,
  country,
@@ -25,7 +28,8 @@ INSERT INTO movieland.movies
  rating,
  price,
  picture_path)
-VALUES ('Зеленая миля',
+VALUES (2,
+        'Зеленая миля',
         'The Green Mile',
         '1999',
         'США',
@@ -33,3 +37,86 @@ VALUES ('Зеленая миля',
         8.88,
         134.67,
         'https://images-na.ssl-images-amazon.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BanBnXkFtZTYwOTU2NTY3._V1._SY209_CR0,0,140,209_.jpg');
+INSERT INTO movieland.movies
+(movie_id,
+ name,
+ name_original,
+ year,
+ country,
+ description,
+ rating,
+ price,
+ picture_path)
+VALUES (3,
+        'Форрест Гамп',
+        'Forrest Gump',
+        '1994',
+        'США',
+        'От лица главного героя Форреста Гампа, слабоумного безобидного человека с благородным и открытым сердцем, рассказывается история его необыкновенной жизни.Фантастическим образом превращается он в известного футболиста, героя войны, преуспевающего бизнесмена. Он становится миллиардером, но остается таким же бесхитростным, глупым и добрым. Форреста ждет постоянный успех во всем, а он любит девочку, с которой дружил в детстве, но взаимность приходит слишком поздно.',
+        8.6,
+        200.60,
+        'https://images-na.ssl-images-amazon.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BaFgfdgfdnBnXkFtZTYwOTU2NTY3._V1._09_.jpg');
+
+-- ================== GENRE ==========================
+INSERT INTO movieland.genres
+(genre_id,
+ name)
+VALUES (1,
+        'драма');
+INSERT INTO movieland.genres
+(genre_id,
+ name)
+VALUES (2,
+        'криминал');
+INSERT INTO movieland.genres
+(genre_id,
+ name)
+VALUES (3,
+        'детектив');
+INSERT INTO movieland.genres
+(genre_id,
+ name)
+VALUES (4,
+        'мелодрама');
+INSERT INTO movieland.genres
+(genre_id,
+ name)
+VALUES (5,
+        'биография');
+INSERT INTO movieland.genres
+(genre_id,
+ name)
+VALUES (6,
+        'комедия');
+
+-- ================== MOVIE_GENRE ==========================
+INSERT INTO movieland.movie_genre
+(movie_id,
+ genre_id)
+VALUES (1,
+        1);
+INSERT INTO movieland.movie_genre
+(movie_id,
+ genre_id)
+VALUES (1,
+        4);
+INSERT INTO movieland.movie_genre
+(movie_id,
+ genre_id)
+VALUES (1,
+        2);
+INSERT INTO movieland.movie_genre
+(movie_id,
+ genre_id)
+VALUES (2,
+        5);
+INSERT INTO movieland.movie_genre
+(movie_id,
+ genre_id)
+VALUES (3,
+        5);
+INSERT INTO movieland.movie_genre
+(movie_id,
+ genre_id)
+VALUES (3,
+        4);

@@ -20,7 +20,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
-@ContextConfiguration("classpath:test-servlet-context.xml")
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/dispatcherServlet-servlet.xml",
+        "file:src/main/webapp/WEB-INF/applicationContext.xml",
+        "classpath:webapp/applicationContextTest.xml"})
 public class MovieControllerTest {
 
     @Value("${random.movies.limit}")
@@ -104,7 +106,8 @@ public class MovieControllerTest {
     public void givenMovies_whenGetByNotExistingGenre_thenNoDataFound() throws Exception {
 
         mockMvc.perform(get("/movie/genre/-1"))
-                .andExpect(status().isNotFound());
+                .andExpect(jsonPath("$", hasSize(0)))
+                .andExpect(status().isOk());
     }
 
 }

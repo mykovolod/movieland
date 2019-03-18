@@ -13,31 +13,33 @@ import java.util.Map;
 @Repository
 @RequiredArgsConstructor
 public class JdbcMovieDao {
-    private static final String GET_ALL_QUERY = "SELECT movie_id, name, name_original, year, country, rating, \n" +
+    private static final BeanPropertyRowMapper movieRowMapper = new BeanPropertyRowMapper(Movie.class);
+    private static final String GET_ALL_QUERY = "SELECT movie_id, name, name_original, year, country, rating,"+
             "price, picture_path FROM movieland.movies;";
-    private static final String GET_RANDOM_QUERY = "SELECT movie_id, name, name_original, year, country, rating, \n" +
+    private static final String GET_RANDOM_QUERY = "SELECT movie_id, name, name_original, year, country, rating," +
             "price, picture_path FROM movieland.movies limit :limit;";
-    private static final String GET_BY_GENRE_ID_QUERY = "SELECT m.movie_id, m.name, m.name_original, m.year, m.country,\n" +
-            "m.rating, m.price, m.picture_path FROM movieland.movies m\n" +
-            "inner join movieland.movie_genre gm on gm.movie_id = m.movie_id\n" +
+    private static final String GET_BY_GENRE_ID_QUERY = "SELECT m.movie_id, m.name, m.name_original, m.year, m.country," +
+            "m.rating, m.price, m.picture_path FROM movieland.movies m " +
+            "inner join movieland.movie_genre gm on gm.movie_id = m.movie_id " +
             "where gm.genre_id = :genreId";
 
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
     public List<Movie> getAll() {
-        return jdbcTemplate.query(GET_ALL_QUERY, new BeanPropertyRowMapper(Movie.class));
+        return jdbcTemplate.query(GET_ALL_QUERY, movieRowMapper);
     }
 
     public List<Movie> getRandom(int limit) {
         final Map<String, Object> param = new HashMap<>();
         param.put("limit", limit);
-        return jdbcTemplate.query(GET_RANDOM_QUERY, param, new BeanPropertyRowMapper(Movie.class));
+
+        return jdbcTemplate.query(GET_RANDOM_QUERY, param, movieRowMapper);
     }
 
     public List<Movie> getMovieByGenre(int genreId) {
         final Map<String, Object> param = new HashMap<>();
         param.put("genreId", genreId);
-        return jdbcTemplate.query(GET_BY_GENRE_ID_QUERY, param, new BeanPropertyRowMapper(Movie.class));
+        return jdbcTemplate.query(GET_BY_GENRE_ID_QUERY, param, movieRowMapper);
     }
 }

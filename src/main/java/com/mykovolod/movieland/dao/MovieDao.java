@@ -1,6 +1,8 @@
 package com.mykovolod.movieland.dao;
 
 import com.mykovolod.movieland.model.Movie;
+import com.mykovolod.movieland.service.MovieSortQueryBuilder;
+import com.mykovolod.movieland.sorting.MovieSortParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -14,8 +16,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class MovieDao {
     private static final BeanPropertyRowMapper movieRowMapper = new BeanPropertyRowMapper(Movie.class);
-    private static final String GET_ALL_QUERY = "SELECT movie_id, name, name_original, year, country, rating,"+
-            "price, picture_path FROM movieland.movies;";
+    private static final String GET_ALL_QUERY = "SELECT movie_id, name, name_original, year, country, rating," +
+            "price, picture_path FROM movieland.movies";
     private static final String GET_RANDOM_QUERY = "SELECT movie_id, name, name_original, year, country, rating," +
             "price, picture_path FROM movieland.movies limit :limit;";
     private static final String GET_BY_GENRE_ID_QUERY = "SELECT m.movie_id, m.name, m.name_original, m.year, m.country," +
@@ -23,11 +25,13 @@ public class MovieDao {
             "inner join movieland.movie_genre gm on gm.movie_id = m.movie_id " +
             "where gm.genre_id = :genreId";
 
+    private final MovieSortQueryBuilder movieSortQueryBuilder;
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
-    public List<Movie> getAll() {
-        return jdbcTemplate.query(GET_ALL_QUERY, movieRowMapper);
+    public List<Movie> getAll(MovieSortParam movieSortParam) {
+        String finalQuery = movieSortQueryBuilder.build(GET_ALL_QUERY, movieSortParam);
+        return jdbcTemplate.query(finalQuery, movieRowMapper);
     }
 
     public List<Movie> getRandom(int limit) {

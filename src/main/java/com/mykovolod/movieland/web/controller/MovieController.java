@@ -2,12 +2,10 @@ package com.mykovolod.movieland.web.controller;
 
 import com.mykovolod.movieland.model.Movie;
 import com.mykovolod.movieland.service.MovieService;
+import com.mykovolod.movieland.sorting.MovieSortParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,8 +17,8 @@ public class MovieController {
     private final MovieService movieService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<Movie> getAll() {
-        return movieService.getAll();
+    public List<Movie> getAll(MovieSortParam movieSortParam) {
+        return movieService.getAll(movieSortParam);
     }
 
     @GetMapping(value = "/random", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

@@ -8,6 +8,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -15,7 +16,7 @@ import java.util.List;
 public class CachedJdbcGenreDao implements JdbcGenreDao {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final JdbcGenreDao defaultJdbcGenreDao;
-    private List<Genre> genreCache;
+    private volatile List<Genre> genreCache;
 
     @Override
     public List<Genre> getAll() {
@@ -25,7 +26,7 @@ public class CachedJdbcGenreDao implements JdbcGenreDao {
     @Scheduled(fixedRateString = "${genre.cache.retention.time}", initialDelay = 1000)
     private void refreshGenreCache() {
         log.info("Refreshing genre cache");
-        genreCache = defaultJdbcGenreDao.getAll();
+        genreCache = new ArrayList<>(defaultJdbcGenreDao.getAll());
     }
 
     @PostConstruct

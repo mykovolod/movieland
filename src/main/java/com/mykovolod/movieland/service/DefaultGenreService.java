@@ -12,13 +12,13 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class DefaultGenreService implements GenreService {
-    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-    private final JdbcGenreDao genreDao;
+    private final Logger log = LoggerFactory.getLogger(getClass());
+    private final JdbcGenreDao cachedJdbcGenreDao;
 
     @Override
     public List<Genre> getAll() {
-        List<Genre> genreDaoAll = genreDao.getAll();
-        LOGGER.debug("Return genre: {}", genreDaoAll);
+        List<Genre> genreDaoAll = cachedJdbcGenreDao.getAll();
+        log.debug("Return genre: {}", genreDaoAll);
         return genreDaoAll;
     }
 }

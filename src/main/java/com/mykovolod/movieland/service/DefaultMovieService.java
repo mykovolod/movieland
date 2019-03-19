@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class DefaultMovieService implements MovieService {
-    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
     private final JdbcMovieDao movieDao;
 
     @Value("${random.movies.limit}")
@@ -22,21 +22,21 @@ public class DefaultMovieService implements MovieService {
     @Override
     public List<Movie> getAll() {
         List<Movie> movieDaoAll = movieDao.getAll();
-        LOGGER.debug("Return movies: {}", movieDaoAll);
+        log.debug("Return movies: {}", movieDaoAll);
         return movieDaoAll;
     }
 
     @Override
     public List<Movie> getRandom() {
         List<Movie> movieDaoAll = movieDao.getRandom(limit);
-        LOGGER.debug("Return movies: {}", movieDaoAll);
+        log.debug("Return movies: {}", movieDaoAll);
         return movieDaoAll;
     }
 
     @Override
     public List<Movie> getMovieByGenre(int genre) {
         List<Movie> movieDaoAll = movieDao.getMovieByGenre(genre);
-        LOGGER.debug("Return movies: {}", movieDaoAll);
+        log.debug("Return movies: {}", movieDaoAll);
         return movieDaoAll;
     }
 }

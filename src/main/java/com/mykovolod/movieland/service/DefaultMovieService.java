@@ -1,6 +1,6 @@
 package com.mykovolod.movieland.service;
 
-import com.mykovolod.movieland.dao.JdbcMovieDao;
+import com.mykovolod.movieland.dao.MovieDao;
 import com.mykovolod.movieland.model.Movie;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DefaultMovieService implements MovieService {
     private final Logger log = LoggerFactory.getLogger(getClass());
-    private final JdbcMovieDao movieDao;
+    private final MovieDao movieDao;
 
     @Value("${random.movies.limit}")
     private int limit;

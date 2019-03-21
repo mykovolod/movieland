@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor
-public class JdbcMovieDao {
+public class MovieDao {
     private static final BeanPropertyRowMapper movieRowMapper = new BeanPropertyRowMapper(Movie.class);
     private static final String GET_ALL_QUERY = "SELECT movie_id, name, name_original, year, country, rating,"+
             "price, picture_path FROM movieland.movies;";

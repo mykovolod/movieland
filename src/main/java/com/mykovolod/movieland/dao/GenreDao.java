@@ -4,6 +4,6 @@ import com.mykovolod.movieland.model.Genre;
 
 import java.util.List;
 
-public interface JdbcGenreDao {
+public interface GenreDao {
     List<Genre> getAll();
 }

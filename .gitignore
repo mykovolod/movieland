@@ -7,4 +7,4 @@
 *.iml
 
 ### properties that contains sensitive information ###
-**/main/**/*-secret.properties
+/*-secret.properties

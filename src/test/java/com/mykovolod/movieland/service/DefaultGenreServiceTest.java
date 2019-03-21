@@ -1,6 +1,7 @@
 package com.mykovolod.movieland.service;
 
-import com.mykovolod.movieland.dao.JdbcGenreDao;
+import com.mykovolod.movieland.dao.DefaultJdbcGenreDao;
+import com.mykovolod.movieland.dao.GenreDao;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,16 +22,16 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 @WebAppConfiguration
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/dispatcherServlet-servlet.xml",
         "file:src/main/webapp/WEB-INF/applicationContext.xml",
-        "classpath:webapp/defaultGenreServiceTest.xml",
+        "classpath:defaultGenreServiceTest.xml",
 })
 public class DefaultGenreServiceTest {
 
     @Value("${genre.cache.retention.time}")
     private long cacheRetentionTime;
     @Autowired
-    JdbcGenreDao defaultJdbcGenreDao;
+    DefaultJdbcGenreDao defaultJdbcGenreDao;
     @Autowired
-    JdbcGenreDao cachedJdbcGenreDao;
+    GenreDao cachedGenreDao;
     @Autowired
     GenreService defaultGenreService;
 

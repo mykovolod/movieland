@@ -4,6 +4,7 @@ import com.mykovolod.movieland.model.Genre;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Primary;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 
@@ -11,22 +12,23 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
+@Primary
 @Repository
 @RequiredArgsConstructor
-public class CachedJdbcGenreDao implements JdbcGenreDao {
+public class CachedGenreDao implements GenreDao {
     private final Logger log = LoggerFactory.getLogger(getClass());
-    private final JdbcGenreDao defaultJdbcGenreDao;
+    private final GenreDao defaultJdbcGenreDao;
     private volatile List<Genre> genreCache;
 
     @Override
     public List<Genre> getAll() {
-        return genreCache;
+        return new ArrayList<>(genreCache);
     }
 
-    @Scheduled(fixedRateString = "${genre.cache.retention.time}", initialDelay = 1000)
+    @Scheduled(fixedRateString = "${genre.cache.retention.time}", initialDelayString = "${genre.cache.retention.time}")
     private void refreshGenreCache() {
         log.info("Refreshing genre cache");
-        genreCache = new ArrayList<>(defaultJdbcGenreDao.getAll());
+        genreCache = defaultJdbcGenreDao.getAll();
     }
 
     @PostConstruct

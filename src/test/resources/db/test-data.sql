@@ -120,3 +120,5 @@ INSERT INTO movieland.movie_genre
  genre_id)
 VALUES (3,
         4);
+
+COMMIT;

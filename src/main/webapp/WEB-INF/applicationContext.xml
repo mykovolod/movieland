@@ -26,7 +26,7 @@
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
-        <property name="maxTotal" value="${jdbc.maxTotal}"/>
+        <property name="maxTotal" value="${jdbc.maxTotal:5}"/>
         <property name="minIdle" value="${jdbc.minIdle:2}"/>
         <property name="maxIdle" value="${jdbc.maxIdle:10}"/>
         <property name="maxWaitMillis" value="${jdbc.maxWaitMillis:10000}"/>

@@ -11,11 +11,12 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class JdbcGenreDao {
+    private static final BeanPropertyRowMapper movieRowMapper = new BeanPropertyRowMapper(Genre.class);
     private static final String GET_ALL_QUERY = "SELECT genre_id, name FROM movieland.genres;";
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
     public List<Genre> getAll() {
-        return jdbcTemplate.query(GET_ALL_QUERY, new BeanPropertyRowMapper(Genre.class));
+        return jdbcTemplate.query(GET_ALL_QUERY, movieRowMapper);
     }
 
 }

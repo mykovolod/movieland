@@ -113,15 +113,15 @@ public class MovieControllerTest {
     @Test
     public void givenMovies_whenGetMovieWithRatingSorting_thenReturnedDataIsSorted() throws Exception {
 
-        mockMvc.perform(get("/movie?rating=asc"))
-                .andExpect(jsonPath("$", hasSize(3)))
+        mockMvc.perform(get("/movie?rating=desc"))
+                 .andExpect(jsonPath("$", hasSize(3)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id").value(3))
-                .andExpect(jsonPath("$[0].rating").value(8.6))
+                .andExpect(jsonPath("$[0].id").value( 1))
+                .andExpect(jsonPath("$[0].rating").value(8.9))
                 .andExpect(jsonPath("$[1].id").value(2))
                 .andExpect(jsonPath("$[1].rating").value(8.88))
-                .andExpect(jsonPath("$[2].id").value(1))
-                .andExpect(jsonPath("$[2].rating").value(8.9))
+                .andExpect(jsonPath("$[2].id").value(3))
+                .andExpect(jsonPath("$[2].rating").value(8.6))
         ;
     }
 

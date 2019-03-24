@@ -1,5 +1,6 @@
-package com.mykovolod.movieland.dao;
+package com.mykovolod.movieland.dao.impl;
 
+import com.mykovolod.movieland.dao.GenreDao;
 import com.mykovolod.movieland.dao.mapper.GenreRowMapper;
 import com.mykovolod.movieland.model.Genre;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class DefaultJdbcGenreDao implements GenreDao {
+public class JdbcGenreDao implements GenreDao {
     private static final GenreRowMapper GENRE_ROW_MAPPER = new GenreRowMapper();
     private static final String GET_ALL_QUERY = "SELECT genre_id, name FROM movieland.genres";
     private final NamedParameterJdbcTemplate jdbcTemplate;

@@ -1,7 +1,8 @@
-package com.mykovolod.movieland.service;
+package com.mykovolod.movieland.service.impl;
 
 import com.mykovolod.movieland.dao.MovieDao;
 import com.mykovolod.movieland.model.Movie;
+import com.mykovolod.movieland.service.MovieService;
 import com.mykovolod.movieland.sorting.MovieLandRequestParam;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;

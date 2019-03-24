@@ -7,7 +7,9 @@ public class MovieLandRequestParam {
     private Map<String, SortDirection> sort = new HashMap<>();
 
     public void addSortingParam(String field, SortDirection sortDirection) {
-        sort.put(field, sortDirection);
+        if (sortDirection != null) {
+            sort.put(field, sortDirection);
+        }
     }
 
     public Map<String, SortDirection> getSort() {

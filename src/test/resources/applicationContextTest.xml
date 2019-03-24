@@ -6,8 +6,9 @@
 
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.h2.Driver" />
-        <property name="url" value="jdbc:h2:mem:movieland;MODE=PostgreSQL;INIT=RUNSCRIPT FROM 'classpath:db/schema.sql'\;RUNSCRIPT FROM 'classpath:db/test-data.sql';DB_CLOSE_DELAY=-1" />
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url"
+                  value="jdbc:h2:mem:movieland;MODE=PostgreSQL;INIT=RUNSCRIPT FROM 'classpath:db/schema.sql'\;RUNSCRIPT FROM 'classpath:db/test-data.sql';DB_CLOSE_DELAY=-1"/>
     </bean>
 
 </beans>

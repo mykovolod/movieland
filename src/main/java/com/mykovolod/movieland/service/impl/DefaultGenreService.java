@@ -1,7 +1,8 @@
-package com.mykovolod.movieland.service;
+package com.mykovolod.movieland.service.impl;
 
 import com.mykovolod.movieland.dao.GenreDao;
 import com.mykovolod.movieland.model.Genre;
+import com.mykovolod.movieland.service.GenreService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

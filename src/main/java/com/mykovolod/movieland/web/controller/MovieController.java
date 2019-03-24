@@ -3,8 +3,10 @@ package com.mykovolod.movieland.web.controller;
 import com.mykovolod.movieland.model.Movie;
 import com.mykovolod.movieland.service.MovieService;
 import com.mykovolod.movieland.sorting.SortDirection;
+import com.mykovolod.movieland.sorting.SortParamConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import com.mykovolod.movieland.sorting.MovieLandRequestParam;
 
@@ -39,6 +41,11 @@ public class MovieController {
     @GetMapping(value = "genre/{genreId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getRandom(@PathVariable int genreId) {
         return movieService.getMovieByGenre(genreId);
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        dataBinder.registerCustomEditor(SortDirection.class, new SortParamConverter());
     }
 
 }

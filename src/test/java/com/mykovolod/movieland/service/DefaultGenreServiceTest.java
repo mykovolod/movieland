@@ -1,6 +1,7 @@
 package com.mykovolod.movieland.service;
 
-import com.mykovolod.movieland.dao.DefaultJdbcGenreDao;
+import com.mykovolod.movieland.dao.impl.CachedGenreDao;
+import com.mykovolod.movieland.dao.impl.JdbcGenreDao;
 import com.mykovolod.movieland.dao.GenreDao;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,15 +30,15 @@ public class DefaultGenreServiceTest {
     @Value("${genre.cache.retention.time}")
     private long cacheRetentionTime;
     @Autowired
-    DefaultJdbcGenreDao defaultJdbcGenreDao;
+    JdbcGenreDao jdbcGenreDao;
     @Autowired
-    GenreDao cachedGenreDao;
+    CachedGenreDao cachedGenreDao;
     @Autowired
     GenreService defaultGenreService;
 
     @Before
     public void initMocks() {
-        when(defaultJdbcGenreDao.getAll()).thenReturn(new ArrayList<>());
+        when(jdbcGenreDao.getAll()).thenReturn(new ArrayList<>());
     }
 
     @Test
@@ -45,7 +46,7 @@ public class DefaultGenreServiceTest {
 
         defaultGenreService.getAll();
 //        defaultGenreService is expected to be called only once during init
-        verify(defaultJdbcGenreDao, times(1)).getAll();
+        verify(jdbcGenreDao, times(1)).getAll();
 
     }
 
@@ -53,7 +54,7 @@ public class DefaultGenreServiceTest {
     public void givenCacheRefreshedBySchedule_whenRetentionTimePassed_thanCacheRefreshed() throws InterruptedException {
         Thread.sleep(cacheRetentionTime * 3);
 
-        verify(defaultJdbcGenreDao, atLeast(2)).getAll();
+        verify(jdbcGenreDao, atLeast(2)).getAll();
     }
 
 }

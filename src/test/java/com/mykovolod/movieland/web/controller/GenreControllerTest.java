@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/dispatcherServlet-servlet.xml",
         "file:src/main/webapp/WEB-INF/applicationContext.xml",
-        "classpath:webapp/applicationContextTest.xml"})
+        "classpath:applicationContextTest.xml"})
 public class GenreControllerTest {
 
     @Value("${random.movies.limit}")

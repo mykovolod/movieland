@@ -1,8 +1,8 @@
 package com.mykovolod.movieland.dao;
 
 import com.mykovolod.movieland.model.Movie;
-import com.mykovolod.movieland.service.MovieSortQueryBuilder;
-import com.mykovolod.movieland.sorting.MovieSortParam;
+import com.mykovolod.movieland.service.QueryBuilder;
+import com.mykovolod.movieland.sorting.MovieLandRequestParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -25,12 +25,12 @@ public class MovieDao {
             "inner join movieland.movie_genre gm on gm.movie_id = m.movie_id " +
             "where gm.genre_id = :genreId";
 
-    private final MovieSortQueryBuilder movieSortQueryBuilder;
+    private final QueryBuilder queryBuilder;
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
-    public List<Movie> getAll(MovieSortParam movieSortParam) {
-        String finalQuery = movieSortQueryBuilder.build(GET_ALL_QUERY, movieSortParam);
+    public List<Movie> getAll(MovieLandRequestParam movieLandRequestParam) {
+        String finalQuery = queryBuilder.build(GET_ALL_QUERY, movieLandRequestParam);
         return jdbcTemplate.query(finalQuery, movieRowMapper);
     }
 

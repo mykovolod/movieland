@@ -2,7 +2,7 @@ package com.mykovolod.movieland.service;
 
 import com.mykovolod.movieland.dao.JdbcMovieDao;
 import com.mykovolod.movieland.model.Movie;
-import com.mykovolod.movieland.sorting.MovieSortParam;
+import com.mykovolod.movieland.sorting.MovieLandRequestParam;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +21,8 @@ public class DefaultMovieService implements MovieService {
     private int limit;
 
     @Override
-    public List<Movie> getAll(MovieSortParam movieSortParam) {
-        List<Movie> movieDaoAll = movieDao.getAll(movieSortParam);
+    public List<Movie> getAll(MovieLandRequestParam movieLandRequestParam) {
+        List<Movie> movieDaoAll = movieDao.getAll(movieLandRequestParam);
         log.debug("Return movies: {}", movieDaoAll);
         return movieDaoAll;
     }

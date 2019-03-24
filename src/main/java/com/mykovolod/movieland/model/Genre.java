@@ -2,12 +2,16 @@ package com.mykovolod.movieland.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
 
-@Data
-@JsonPropertyOrder({"genre_id", "name"})
+@AllArgsConstructor
+@ToString
+@Getter
+@JsonPropertyOrder({"genreId", "name"})
 public class Genre {
     @JsonProperty("id")
-    private int genre_id;
+    private int genreId;
     private String name;
 }

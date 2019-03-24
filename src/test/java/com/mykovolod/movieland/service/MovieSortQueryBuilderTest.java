@@ -1,43 +1,49 @@
 package com.mykovolod.movieland.service;
 
-import com.mykovolod.movieland.sorting.MovieSortParam;
+import com.mykovolod.movieland.sorting.MovieLandRequestParam;
+import com.mykovolod.movieland.sorting.SortDirection;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class MovieSortQueryBuilderTest {
-    MovieSortQueryBuilder movieSortQueryBuilder = new MovieSortQueryBuilder();
+    QueryBuilder queryBuilder = new QueryBuilder();
 
 
     @Test
     public void whenRatingSortAsc_thanItIsCorrect() {
-        MovieSortParam movieSortParam = new MovieSortParam(MovieSortParam.SortDirection.asc, MovieSortParam.SortDirection.desc);
-        String builderQuery = movieSortQueryBuilder.build("select * from table", movieSortParam);
 
-        assertEquals("select * from table order by rating asc", builderQuery);
+        MovieLandRequestParam movieLandRequestParam = new MovieLandRequestParam();
+        movieLandRequestParam.addSortingParam("rating", SortDirection.ASC);
+        String builderQuery = queryBuilder.build("select * from table", movieLandRequestParam);
+
+        assertEquals("select * from table order by rating ASC", builderQuery);
     }
 
     @Test
     public void whenRatingSortDesc_thanItIsCorrect() {
-        MovieSortParam movieSortParam = new MovieSortParam(MovieSortParam.SortDirection.desc, MovieSortParam.SortDirection.desc);
-        String builderQuery = movieSortQueryBuilder.build("select * from table", movieSortParam);
+        MovieLandRequestParam movieLandRequestParam = new MovieLandRequestParam();
+        movieLandRequestParam.addSortingParam("rating", SortDirection.DESC);
+        String builderQuery = queryBuilder.build("select * from table", movieLandRequestParam);
 
-        assertEquals("select * from table order by rating desc", builderQuery);
+        assertEquals("select * from table order by rating DESC", builderQuery);
     }
 
     @Test
     public void whenPriceSortDesc_thanItIsCorrect() {
-        MovieSortParam movieSortParam = new MovieSortParam(null, MovieSortParam.SortDirection.desc);
-        String builderQuery = movieSortQueryBuilder.build("select * from table", movieSortParam);
+        MovieLandRequestParam movieLandRequestParam = new MovieLandRequestParam();
+        movieLandRequestParam.addSortingParam("price", SortDirection.DESC);
+        String builderQuery = queryBuilder.build("select * from table", movieLandRequestParam);
 
-        assertEquals("select * from table order by price desc", builderQuery);
+        assertEquals("select * from table order by price DESC", builderQuery);
     }
 
     @Test
     public void whenPriceSorAsc_thanItIsCorrect() {
-        MovieSortParam movieSortParam = new MovieSortParam(null, MovieSortParam.SortDirection.asc);
-        String builderQuery = movieSortQueryBuilder.build("select * from table", movieSortParam);
+        MovieLandRequestParam movieLandRequestParam = new MovieLandRequestParam();
+        movieLandRequestParam.addSortingParam("price", SortDirection.ASC);
+        String builderQuery = queryBuilder.build("select * from table", movieLandRequestParam);
 
-        assertEquals("select * from table order by price asc", builderQuery);
+        assertEquals("select * from table order by price ASC", builderQuery);
     }
 }

@@ -22,7 +22,7 @@ public class DefaultMovieService implements MovieService {
     private int limit;
 
     @Override
-    public List<Movie> getAll(MovieLandRequestParam movieLandRequestParam) {
+    public List<Movie> getAll(final MovieLandRequestParam movieLandRequestParam) {
         List<Movie> movieDaoAll = movieDao.getAll(movieLandRequestParam);
         log.debug("Return movies: {}", movieDaoAll);
         return movieDaoAll;
@@ -36,7 +36,7 @@ public class DefaultMovieService implements MovieService {
     }
 
     @Override
-    public List<Movie> getMovieByGenre(int genre) {
+    public List<Movie> getMovieByGenre(final int genre) {
         List<Movie> movieDaoAll = movieDao.getMovieByGenre(genre);
         log.debug("Return movies: {}", movieDaoAll);
         return movieDaoAll;

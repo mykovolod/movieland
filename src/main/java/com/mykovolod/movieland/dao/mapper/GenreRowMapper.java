@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class GenreRowMapper implements RowMapper<Genre> {
     @Override
-    public Genre mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+    public Genre mapRow(final ResultSet resultSet, final int rowNum) throws SQLException {
         int genreId = resultSet.getInt("genre_id");
         String name = resultSet.getString("name");
         return new Genre(genreId, name);

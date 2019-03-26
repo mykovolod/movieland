@@ -1,6 +1,6 @@
 # MovieLand
 
-[![Build status](https://travis-ci.org/mykovolod/movieland.svg?branch=master)](https://travis-ci.org/mykovolod/movieland) [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=com.sonarqube.examples.standard-sqscanner-travis-project&metric=alert_status)](https://sonarcloud.io/dashboard/index/com.sonarqube.examples.standard-sqscanner-travis-project)
+[![Build status](https://travis-ci.org/mykovolod/movieland.svg?branch=master)](https://travis-ci.org/mykovolod/movieland) [![codecov](https://codecov.io/gh/mykovolod/movieland/branch/master/graph/badge.svg)](https://codecov.io/gh/mykovolod/movieland) [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=com.sonarqube.examples.standard-sqscanner-travis-project&metric=alert_status)](https://sonarcloud.io/dashboard/index/com.sonarqube.examples.standard-sqscanner-travis-project)
 
 
 A pet project that exposes online Movie shop via a RESTful API

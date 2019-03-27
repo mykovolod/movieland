@@ -10,7 +10,10 @@ addons:
     organization: "mykovolod-github"
     token:
       secure: "5f78ed8a9a02fc70360c8629276b6005f43aaba9"
-script:
+
+
+script: "mvn cobertura:cobertura"
+  - mvn cobertura:cobertura
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
 

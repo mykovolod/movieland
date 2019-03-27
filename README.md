@@ -1,5 +1,9 @@
 # MovieLand
 
+[![Build status](https://travis-ci.org/mykovolod/movieland.svg?branch=master)](https://travis-ci.org/mykovolod/movieland) 
+[![codecov](https://codecov.io/gh/mykovolod/movieland/branch/master/graph/badge.svg)](https://codecov.io/gh/mykovolod/movieland) [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=mykovolod_movieland&metric=alert_status)](https://sonarcloud.io/dashboard/index/mykovolod_movieland)
+
+
 A pet project that exposes online Movie shop via a RESTful API
 
 ## Getting Started

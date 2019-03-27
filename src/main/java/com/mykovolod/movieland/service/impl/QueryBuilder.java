@@ -10,16 +10,17 @@ import java.util.stream.Collectors;
 @Service
 public class QueryBuilder {
 
-    public String addSorting(String query, MovieLandRequestParam movieLandRequestParam) {
+    public String addSorting(final String query, final MovieLandRequestParam movieLandRequestParam) {
+        String result = query;
 
         Map<String, SortDirection> sortDirection = movieLandRequestParam.getSort();
         String sortParam = sortDirection.entrySet().stream().map(e -> e.getKey() + " " + e.getValue().toString())
                 .collect(Collectors.joining(", "));
 
         if (!sortParam.isEmpty()) {
-            query = query + " order by " + sortParam;
+            result = query + " order by " + sortParam;
         }
 
-        return query;
+        return result;
     }
 }
